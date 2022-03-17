@@ -1,0 +1,90 @@
+body {
+  background: rgb(119,119,121);
+  background: linear-gradient(48deg, rgba(119,119,121,1) 0%, rgba(116,150,92,1) 21%, rgba(87,153,167,1) 41%, rgba(71,205,170,1) 61%, rgba(30,198,162,1) 81%, rgba(0,86,145,1) 100%);
+}
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+h1, p {
+    font-family: Lato;
+}
+
+.item {
+    margin:10px;
+    padding:10px;
+    border-radius:8px;
+    color: white;
+}
+
+.main-container {
+  display: flex;
+}
+
+.box.container {
+    display: flex;
+    background: #464646;
+    color: white;
+    padding: 0;
+    margin: 12px;
+    box-shadow: 4px 4px 8px rgb(0 0 0 / 40%);
+}
+
+.box.container > button {
+  display: none;
+}
+
+.box.container > p {
+  display: inline-block;
+}
+
+nav {
+  padding-top: 0;
+  background: #47444B;
+  padding: 0;
+  height: 60px;
+  display: flex;
+  align-items: center;
+}
+
+nav > ul {
+  display: flex;
+  flex-direction: row;
+  margin: 0;
+}
+
+nav > ul > li {
+  list-style: none;
+  padding: 8px;
+}
+
+nav > ul > li > a {
+  color: white;
+  text-decoration: none;
+}
+
+input[type="text"] {
+  background: #D3D3D3;
+  height: 50px;
+  width: 100%;
+  padding: 12px;
+}
+
+.react-calendar {
+  display: none;
+}
+
+.search-container {
+  width: 100%;
+}
+
+.search-container input[type="text"] {
+  width: 80%;
+}
+
+.search-container button {
+  width: 20%;
+}
+
