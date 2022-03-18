@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useState, useEffect} from "react";
 import React from 'react';
 import './styles/style.css';
 import './styles/App.css';
@@ -9,6 +9,10 @@ function SolarResultsUVI(props) {
     const [app, setApp] = useState(
         myFunctions(props)
     );
+
+    useEffect(() => {
+        props.childFunc1.current = update
+      },)
 
     function update() {
         setApp(myFunctions(props))
@@ -38,9 +42,9 @@ function SolarResultsUVI(props) {
 
     return (
         <div>
-            <div>
+            {/* <div>
                 <button onClick={update}>Calculate solar calculations UVI</button>
-            </div>
+            </div> */}
             <br></br>
             <h1 className="App-header">Solar UVI calculations</h1>
             <p className="item">{"uvIndex: "} {app.uvIndex}</p>

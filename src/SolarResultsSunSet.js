@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useState, useEffect} from "react";
 import React from 'react';
 import './styles/style.css';
 import './styles/App.css';
@@ -10,15 +10,19 @@ function SolarResultsSunSet(props) {
         myFunctions(props)
     );
 
+    useEffect(() => {
+        props.childFunc3.current = update
+      },)
+
     function update() {
         setApp(myFunctions(props))
     }
 
     return (
         <div>
-            <div>
+            {/* <div>
                 <button onClick={update}>Calculate solar calculations</button>
-            </div>
+            </div> */}
             <br></br>
             <h1 className="App-header">Solar Sunset calculations</h1>
             <p className="item">{"timeRize: "} {app.timeRize}</p>

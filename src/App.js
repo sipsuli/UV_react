@@ -1,5 +1,5 @@
 import React from 'react';
-import {useState} from 'react'
+import {useState, useRef, useEffect} from 'react'
 import AppCalendar from './AppCalendar';
 import MapMaker from './MapMakers/MapMaker';
 import Container from 'react-bootstrap/Container';
@@ -42,6 +42,18 @@ function App() {
     });
   }
 
+  useEffect(() => {
+    childFunc1.current()
+    childFunc2.current()
+    childFunc3.current()
+    childFunc4.current()
+  }, [locState]);
+
+  const childFunc1 = useRef(null);
+  const childFunc2 = useRef(null);
+  const childFunc3 = useRef(null);
+  const childFunc4 = useRef(null);
+
   return (
     <section>
         <nav>
@@ -69,12 +81,12 @@ function App() {
       </div>
       <div className="row">
         <div className="col-4">
-          <Container className="box"><SolarResultsUVI longitude={locState.lon} latitude={locState.lat} date={dateState} /></Container>
+          <Container className="box"><SolarResultsUVI longitude={locState.lon} latitude={locState.lat} date={dateState} childFunc1={childFunc1} /></Container>
         </div>
         <div className="col-4">
-          <Container className="box"><SolarResultsPower longitude={locState.lon} latitude={locState.lat} date={dateState} /></Container>
-          <Container className="box"><SolarResultsSunSet longitude={locState.lon} latitude={locState.lat} date={dateState} /></Container>
-          <Container className="box"><SolarResultsPosition longitude={locState.lon} latitude={locState.lat} date={dateState} /></Container>
+          <Container className="box"><SolarResultsPower longitude={locState.lon} latitude={locState.lat} date={dateState} childFunc2={childFunc2} /></Container>
+          <Container className="box"><SolarResultsSunSet longitude={locState.lon} latitude={locState.lat} date={dateState} childFunc3={childFunc3} /></Container>
+          <Container className="box"><SolarResultsPosition longitude={locState.lon} latitude={locState.lat} date={dateState} childFunc4={childFunc4} /></Container>
         </div>
         <div className="col-4">
           <Container className="box"><MapMaker /></Container>

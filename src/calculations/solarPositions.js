@@ -88,15 +88,28 @@ function solarPositions(location) {
     const nocturnal = MathNew.deg2rad(-12.); // Auringon lasku "nauttinen hämärä"
     const night = MathNew.deg2rad(-18.); // Auringonlasku astronominen hämärä (täydellinen pimeys)
 
+    
+    let lpn_n;
+    let lpn_s;
+    
+    if (Math.round(10 * (90.0 + MathNew.rad2deg(delta))) / 10. > 90) {
+        lpn_n = 90;
+        lpn_s = Math.round(10 * (-90.0 + MathNew.rad2deg(delta))) / 10.
+    }
+    else {
+        lpn_n = Math.round(10 * (90.0 + MathNew.rad2deg(delta))) / 10.
+        lpn_s = -90;
+    }
+
     const solarPositionLocal = {
         currentSunAzimuth: Math.round(10 * MathNew.minDegree(MathNew.trueTan(solarPositionAzimuth.Ay, solarPositionAzimuth.Ax) + 180.)) / 10,
         currentSunElevation: Math.round(10 * MathNew.rad2deg(Math.asin(Math.sin(delta) * Math.sin(latitude) + Math.cos(hourAzimuth) * Math.cos(delta) * Math.cos(latitude)))) / 10,
         maxSunElevation: Math.round(10 * MathNew.trueElevation(90.0 + MathNew.rad2deg(delta) - MathNew.rad2deg(latitude))) / 10,
         //korkeimmillaan, eli etelässä
         timeSunSouth: MathNew.minDegree(MathNew.rad2deg(alfa) - stellarTimeDeg.noon) * 24. / 360.,
-        //kaamoksen leveyspiiri
-        latitudePolarNight: Math.round(10 * (90.0 + MathNew.rad2deg(delta))) / 10.,
-
+        //kaamoksen leveyspiirit
+        latitudePolarNightNorth: lpn_n,
+        latitudePolarNightSouth: lpn_s,
         //Auringon nousu
         get timeRize() {
             return MathNew.minHour(this.timeSunSouth - MathNew.rad2deg(Math.acos(Math.sin(horizon) / (Math.cos(delta) * Math.cos(latitude)) - Math.tan(delta) * Math.tan(latitude))) * 24. / 360.);

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import React from 'react';
 import './styles/style.css';
 
@@ -17,7 +17,7 @@ function InputLocation(props) {
 
   function handlePosition(e) {
     props.handleChange(inputs);
-    e.preventDefault();
+    // e.preventDefault();
   }
 
   function handleSubmit(event) {
@@ -36,6 +36,11 @@ function InputLocation(props) {
       alert("Geolocation is not supported by this browser.");
     }
   };
+
+  useEffect(() => {
+    handlePosition()
+  },[inputs])
+
   const showPosition = position => {
     setInputs({
       lat: position.coords.latitude,
@@ -67,7 +72,7 @@ function InputLocation(props) {
 
         <button onClick={handleSubmit}>Set local coordinate</button>
         <hr/>
-        <button onClick={handlePosition}>Set new coordinate</button>
+        {/* <button onClick={handlePosition}>Set new coordinate</button> */}
       </form>
     </>
   )
