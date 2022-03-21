@@ -28,7 +28,7 @@ function uviWarning(uvIndex) {
         return setUviWarning("Pieni riski UV säteilystä", "rgb(160,206,0)", "Gold");
     }
     if (uvIndex >= 1.0 && uvIndex < 2.0) {
-        return setUviWarning("Vähäinen riski UV säteilystä", "rgb(78,180,0)", "Cyan");
+        return setUviWarning("Vähäinen riski UV säteilystä", "linear-gradient(90deg, rgb(6,65,7) 0%,rgb(71,218,65) 100%)", "White");
     }
     if (uvIndex >= 0 && uvIndex < 1.0) {
         return setUviWarning("Ei vaaraa UV säteilystä", "rgb(190,190,190)", "Blue");
@@ -37,7 +37,7 @@ function uviWarning(uvIndex) {
 
 function setUviWarning(text, color, fontColor) {
     const warning = {
-        backgroundColor: color,
+        background: color,
         value: text,
         color: fontColor
     }

@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useState, useEffect} from "react";
 import React from 'react';
 import './styles/style.css';
 import './styles/App.css';
@@ -10,20 +10,21 @@ function SolarResultsUVI(props) {
         myFunctions(props)
     );
 
+    useEffect(() => {
+        props.childFunc1.current = update
+      },)
+
     function update() {
         setApp(myFunctions(props))
     }
 
-    const backgroundColor = String(app.uvIndexWarning.backgroundColor);
+    const background = String(app.uvIndexWarning.background);
     const color = String(app.uvIndexWarning.color);
 
     const myStyle1 = {
         color: color,
-        backgroundColor: backgroundColor,
+        background: background,
         padding: "10px",
-        fontFamily: "Sans-Serif",
-        borderRadius: "8px",
-        margin: "10px"
       };
       const myStyle2 = {
         color: color,
@@ -37,20 +38,20 @@ function SolarResultsUVI(props) {
       };
 
     return (
-        <div>
-            <div>
+        <div className="calc">
+            {/* <div>
                 <button onClick={update}>Calculate solar calculations UVI</button>
-            </div>
-            <br></br>
+            </div> */}
             <h1 className="App-header">Solar UVI calculations</h1>
-            <p className="item">{"uvIndex: "} {app.uvIndex}</p>
+            <div className="uv_index" style={myStyle1}>
+                {"uvIndexWarning.background: "} {app.uvIndexWarning.background}
+                <p className="item">{"uvIndex: "} {app.uvIndex}</p>
+                <p>{app.uvIndexWarning.value}</p>
+            </div>
             <p className="item">{"uvIndexEnd: "} {app.uvIndexEnd}</p>
             <p className="item">{"uvIndexMax: "} {app.uvIndexMax}</p>
             <p className="item">{"uvIndexMaxAnnual: "} {app.uvIndexMaxAnnual}</p>
             <p className="item">{"uvIndexOverThree: "} {app.uvIndexOverThree}</p>
-            <p style={myStyle1}>{"uvIndexWarning.backgroundColor: "} {app.uvIndexWarning.backgroundColor}</p>
-            <p className="item">{"uvIndexWarning.color: "} {app.uvIndexWarning.color}</p>
-            <p style={myStyle2}>{"uvIndexWarning.value: "} {app.uvIndexWarning.value}</p>
         </div>
     )
 }

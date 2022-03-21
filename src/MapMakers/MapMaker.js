@@ -1,5 +1,5 @@
 import React from 'react'
-import { GoogleMap, LoadScript, useJsApiLoader, useGoogleMap} from '@react-google-maps/api';
+import { GoogleMap, LoadScript } from '@react-google-maps/api';
 
 const containerStyle = {
   width: '400px',
@@ -28,17 +28,17 @@ function MapMaker() {
   )
 }
 
-function PanningComponent() {
-  const map = useGoogleMap()
+// function PanningComponent() {
+//   const map = useGoogleMap()
 
-  React.useEffect(() => {
-    if (map) {
-      map.panTo(80,20)
-    }
-  }, [map])
+//   React.useEffect(() => {
+//     if (map) {
+//       map.panTo(80,20)
+//     }
+//   }, [map])
 
-  return null
-}
+//   return null
+// }
 
 export default React.memo(MapMaker)
 

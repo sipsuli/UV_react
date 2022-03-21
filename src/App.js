@@ -1,5 +1,5 @@
 import React from 'react';
-import {useState} from 'react'
+import {useState, useRef, useEffect} from 'react'
 import AppCalendar from './AppCalendar';
 import MapMaker from './MapMakers/MapMaker';
 import Container from 'react-bootstrap/Container';
@@ -21,7 +21,7 @@ function App() {
     const datenow = new Date();
     newdate = new Date(newdate);
 
-    if (newdate.valueOf() == datenow.valueOf()) {
+    if (newdate.valueOf() === datenow.valueOf()) {
       setDate(datenow);
     }
     else {
@@ -42,13 +42,22 @@ function App() {
     });
   }
 
+  useEffect(() => {
+    childFunc1.current()
+    childFunc2.current()
+    childFunc3.current()
+    childFunc4.current()
+  }, [locState]);
+
+  const childFunc1 = useRef(null);
+  const childFunc2 = useRef(null);
+  const childFunc3 = useRef(null);
+  const childFunc4 = useRef(null);
+
   return (
     <section>
         <nav>
           <ul>
-            <li><a href="#">London</a></li>
-            <li><a href="#">Paris</a></li>
-            <li><a href="#">Tokyo</a></li>
           </ul>
         </nav>
     <Container className="container">
@@ -60,7 +69,7 @@ function App() {
           <Container className="box">
                   <div class="search-container">
                     <form action="/action_page.php">
-                      <input type="text" placeholder="Search.." name="search"></input>                      
+                      <input type="text" placeholder="Hae sijainti.." name="search"></input>                      
                       <button type="submit"><FontAwesomeIcon icon={faMagnifyingGlass} /></button>
                     </form>
                   </div>
@@ -69,16 +78,15 @@ function App() {
       </div>
       <div className="row">
         <div className="col-4">
-          <Container className="box"><SolarResultsUVI longitude={locState.lon} latitude={locState.lat} date={dateState} /></Container>
+          <Container className="box"><SolarResultsUVI longitude={locState.lon} latitude={locState.lat} date={dateState} childFunc1={childFunc1}/></Container>
         </div>
         <div className="col-4">
-          <Container className="box"><SolarResultsPower longitude={locState.lon} latitude={locState.lat} date={dateState} /></Container>
-          <Container className="box"><SolarResultsSunSet longitude={locState.lon} latitude={locState.lat} date={dateState} /></Container>
-          <Container className="box"><SolarResultsPosition longitude={locState.lon} latitude={locState.lat} date={dateState} /></Container>
+          <Container className="box"><SolarResultsPower longitude={locState.lon} latitude={locState.lat} date={dateState} childFunc2={childFunc2}/></Container>
+          <Container className="box"><SolarResultsSunSet longitude={locState.lon} latitude={locState.lat} date={dateState} childFunc3={childFunc3}/></Container>
+          <Container className="box"><SolarResultsPosition longitude={locState.lon} latitude={locState.lat} date={dateState} childFunc4={childFunc4}/></Container>
         </div>
         <div className="col-4">
-          <Container className="box"><MapMaker /></Container>
-          <Container className="box"><InputLocation handleChange={changeLocation} /></Container>
+          <Container className="box map-container"><MapMaker /><InputLocation handleChange={changeLocation} /></Container>
         </div>
       </div>
       </Container>
